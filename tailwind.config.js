@@ -1,5 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme")
-
+const colors = require("tailwindcss/colors")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -22,6 +22,7 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          blue: colors.blue[700],
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
