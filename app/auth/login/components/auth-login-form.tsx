@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { loginAction } from "@/server_actions/auth_actions"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -32,6 +32,7 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -45,7 +46,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       const res = await loginAction(values.email, values.password)
       toast.success(`Logged in as ${res.profile?.full_name ?? res.email}`)
       loadingToast("Redirecting...")
-      router.push("/auth")
+      router.push("/auth?" + searchParams.toString())
     } catch (error) {
       toast.error(parseError(error).message)
     }
@@ -127,7 +128,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       </Form>
 
       <span className="text-center text-sm font-medium text-muted-foreground ">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link
           href={"/auth/register"}
           className="text-accent-foreground underline underline-offset-4"

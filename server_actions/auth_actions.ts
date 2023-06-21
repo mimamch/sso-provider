@@ -1,11 +1,13 @@
 "use server"
 
 import { cookies } from "next/headers"
+import { NextResponse } from "next/server"
 import { AUTH_TOKEN_KEY } from "@/defaults/enum"
 import { JWT_SECRET_KEY } from "@/defaults/env"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
+import { AuthUser } from "@/types/user"
 import ValidationError from "@/lib/error"
 import prisma from "@/lib/prisma"
 
@@ -49,6 +51,29 @@ export const loginAction = async (email: string, password: string) => {
     password: undefined,
   }
 }
+
+export const getProfile = async () => {
+  const token = cookies().get(AUTH_TOKEN_KEY)?.value ?? ""
+  const data = verifyToken(token) as DataOnToken | null
+  if (!token || !data) return null
+  const user = await prisma.user.findUnique({
+    where: {
+      id: data.user.id,
+    },
+    include: {
+      profile: true,
+    },
+  })
+  if (!user) return null
+  const returnedData: AuthUser = {
+    id: user.id,
+    email: user.email,
+    full_name: user.profile?.full_name,
+    phone: user.profile?.phone,
+  }
+  return returnedData
+}
+
 export const registerAction = async ({
   email,
   password,

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { AUTH_TOKEN_KEY } from "@/defaults/enum"
 
-import { siteConfig } from "@/config/site"
+import { Icons } from "@/components/icons"
 
 import { UserAuthRegisterForm } from "./components/auth-register-form"
 
@@ -19,9 +19,7 @@ export default function RegisterPage({
   return (
     <div className="mx-auto flex h-full w-full flex-col justify-center space-y-6 sm:w-[350px]">
       <div className="flex justify-center">
-        <h2 className=" mb-4 w-fit select-none rounded-br-2xl rounded-tl-2xl rounded-tr-2xl bg-primary-blue px-5 py-2 text-center text-3xl font-bold tracking-tight text-white">
-          {siteConfig.name}
-        </h2>
+        <Icons.logo className="mb-4 px-5 py-2 text-3xl" />
       </div>
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">

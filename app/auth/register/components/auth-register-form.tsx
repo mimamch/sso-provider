@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { registerAction } from "@/server_actions/auth_actions"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -44,6 +44,7 @@ export function UserAuthRegisterForm({
   ...props
 }: UserAuthFormProps) {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -60,7 +61,7 @@ export function UserAuthRegisterForm({
       )
       loadingToast("Redirecting on 3 seconds...")
       await new Promise((r) => setTimeout(r, 3000))
-      router.push("/auth")
+      router.push("/auth?" + searchParams.toString())
     } catch (error) {
       toast.error(parseError(error).message)
     }

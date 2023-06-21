@@ -37,8 +37,8 @@ export function MobileNav({ items }: MobileNavProps) {
           className="flex max-w-[50vw] items-center"
           onOpenChange={setOpen}
         >
-          <Icons.logo className="mr-2 h-4 w-4" />
-          <span className="font-bold">{siteConfig.name}</span>
+          <Icons.logo />
+          {/* <span className="font-bold">{siteConfig.name}</span> */}
         </MobileLink>
         <ScrollArea className="my-4 pl-6">
           <div className="flex max-w-[50vw] flex-col space-y-3">
