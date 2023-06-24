@@ -23,7 +23,7 @@ export const Icons = {
   logo: ({ className, ...props }: React.ComponentPropsWithoutRef<"h2">) => (
     <h2
       className={cn(
-        "w-fit select-none rounded-t-2xl rounded-br-2xl bg-brand px-2 py-1 text-center text-lg font-bold tracking-tight text-white",
+        "w-fit select-none rounded-t-2xl rounded-br-2xl bg-primary px-2 py-1 text-center text-lg font-bold tracking-tight text-primary-foreground",
         className
       )}
     >

@@ -23,8 +23,6 @@ import {
 } from "@/components/form"
 import { Icons } from "@/components/icons"
 
-import AuthButton from "../../components/auth-button"
-
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string(),
@@ -116,7 +114,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 )}
               />
             </div>
-            <AuthButton isLoading={isLoading}>Login</AuthButton>
+            <Button disabled={isLoading} className="shadow">
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Login
+            </Button>
           </div>
         </form>
       </Form>

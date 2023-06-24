@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useAuthStore } from "@/states/auth_state"
 
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -16,10 +17,10 @@ export default function Greetings() {
         <div className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           <span className="flex">
             Hi,{" "}
-            <div className="inline-flex w-[200px] items-center md:w-auto">
+            <div className="ml-1 inline-flex w-[200px] items-center md:w-auto">
               {!user && <Skeleton className="h-6 w-40 rounded-md md:w-60" />}
               {user && (
-                <span className="truncate text-primary-blue">
+                <span className="truncate text-primary underline decoration-8 underline-offset-4">
                   {user.full_name}.
                 </span>
               )}
@@ -34,12 +35,12 @@ export default function Greetings() {
       </div>
       <div className="flex gap-4">
         <Link
-          href={siteConfig.links.docs}
+          href={"/"}
           target="_blank"
           rel="noreferrer"
-          className={buttonVariants()}
+          className={cn(buttonVariants())}
         >
-          Documentation
+          Go To Settings
         </Link>
         <Link
           target="_blank"

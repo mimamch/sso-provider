@@ -24,8 +24,6 @@ import {
 } from "@/components/form"
 import { Icons } from "@/components/icons"
 
-import AuthButton from "../../components/auth-button"
-
 const registerSchema = z
   .object({
     email: z.string().email(),
@@ -207,7 +205,12 @@ export function UserAuthRegisterForm({
                 )}
               />
             </div>
-            <AuthButton isLoading={isLoading}>Create Account</AuthButton>
+            <Button disabled={isLoading} className="shadow">
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Create Account
+            </Button>
           </div>
         </form>
       </Form>

@@ -1,7 +1,6 @@
 "use server"
 
 import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
 import { AUTH_TOKEN_KEY } from "@/defaults/enum"
 import { JWT_SECRET_KEY } from "@/defaults/env"
 import bcrypt from "bcrypt"
